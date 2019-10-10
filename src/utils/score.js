@@ -1,13 +1,13 @@
-function Score () {
-  this.score = null
-}
+export default class Score {
+  constructor () {
+    this.score = 0
+  }
 
-Score.prototype.currentScore = function () {
-  return this.score
-}
+  addPoint () {
+    this.score += 1
+  }
 
-Score.prototype.addPoint = function () {
-  this.score += 1
+  get currentScore () {
+    return this.score
+  }
 }
-
-export { Score }
