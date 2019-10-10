@@ -1,3 +1,5 @@
+![GitHub Logo](/src/assets/extra/logo.png)
+
 # The flappy bird
 
 Let's revive the most famous bird!
@@ -16,7 +18,10 @@ Let's revive the most famous bird!
 4. Build distribuition folder:
 `npm run build`
 
-5. Open [http://localhost:1234](http://localhost:1234) and play!
+5. Run http server:
+`npm start`
+
+6. Open [http://localhost:1234](http://localhost:1234) and play!
 
 ---
 
