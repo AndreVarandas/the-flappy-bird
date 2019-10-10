@@ -1,3 +1,5 @@
+![GitHub Logo](/src/assets/extra/logo.png)
+
 # The flappy bird
 
 Let's revive the most famous bird!
