@@ -4,6 +4,8 @@
 
 Let's revive the most famous bird!
 
+Although it's still incomplete, you can play it here: [https://andrevarandas.github.io/the-flappy-bird/](https://andrevarandas.github.io/the-flappy-bird/)
+
 ### Development Setup
 
 1. Clone this repository:
