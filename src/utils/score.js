@@ -1,13 +1,13 @@
-export default class Score {
+export class Score {
   constructor () {
     this.score = 0
   }
 
-  addPoint () {
-    this.score += 1
-  }
-
   get currentScore () {
     return this.score
+  }
+
+  addPoint () {
+    this.score += 1
   }
 }
