@@ -1,0 +1,11 @@
+# OSX
+.DS_Store
+
+# Parcel + modules
+.cache
+dist
+node_modules
+
+# Editors
+.vscode
+.idea
