@@ -1,4 +1,4 @@
-![GitHub Logo](/src/assets/extra/flappy_256x256.png)
+![Flappy bird greest you!](/src/assets/extra/flappy_256x256.png)
 
 # The flappy bird
 
@@ -11,7 +11,7 @@ Although it's still incomplete, you can play it here: [https://andrevarandas.git
 1. Clone this repository:
 `git clone https://github.com/AndreVarandas/the-flappy-bird`
 
-2. Change directory into `the-flappy-bird` and install dependencies:
+2. Change directory into `the-flappy-bird` and install dependencies:1
 `npm install`
 
 3. Run development environment:
