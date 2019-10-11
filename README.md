@@ -2,7 +2,7 @@
     <img alt="Flappy bird greets you!" src="/src/assets/extra/flappy_256x256.png" height="auto" width="256px" />
 </div>
 
-# The flappy bird
+# The flappy bird [![Build Status](https://travis-ci.com/AndreVarandas/the-flappy-bird.svg?branch=master)](https://travis-ci.com/AndreVarandas/the-flappy-bird)
 
 Let's revive the most famous bird!
 
