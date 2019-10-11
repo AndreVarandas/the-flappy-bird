@@ -13,7 +13,7 @@ Although it's still incomplete, you can play it here: [https://andrevarandas.git
 1. Clone this repository:
 `git clone https://github.com/AndreVarandas/the-flappy-bird`
 
-2. Change directory into `the-flappy-bird` and install dependencies:1
+2. Change directory into `the-flappy-bird` and install dependencies:
 `npm install`
 
 3. Run development environment:
