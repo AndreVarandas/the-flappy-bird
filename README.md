@@ -1,4 +1,4 @@
-![GitHub Logo](/src/assets/extra/logo.png)
+![GitHub Logo](/src/assets/extra/flappy_256x256.png)
 
 # The flappy bird
 
