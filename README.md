@@ -1,4 +1,6 @@
-![GitHub Logo](/src/assets/extra/logo.png)
+<div align="center">
+    <img alt="Flappy bird greets you!" src="/src/assets/extra/flappy_256x256.png" height="auto" width="256px" />
+</div>
 
 # The flappy bird
 
