@@ -1,4 +1,6 @@
-![Flappy bird greest you!](/src/assets/extra/flappy_256x256.png)
+<div align="center">
+    <img alt="Flappy bird greets you!" src="/src/assets/extra/flappy_256x256.png" height="auto" width="407px" />
+</div>
 
 # The flappy bird
 
