@@ -129,6 +129,18 @@ class Player {
    * @returns {boolean} - True if collided, false if not.
    */
   onCollision (object) {
+    // Check if player collided against a pipe at the top
+    if (object.name === 'top') {
+      return (this.x >= (object.x - object.width) && this.x < object.x) &&
+        (this.y >= (object.y - object.height) && this.y < object.y)
+    }
+
+    // Check if player collided against a pipe at the bottom
+    if (object.name === 'bottom') {
+      return (this.x >= object.x && this.x < (object.x + object.width)) &&
+        (this.y >= object.y && this.y < (object.y + object.height))
+    }
+
     return this.y >= (object.y - this.height / 2)
   }
 }

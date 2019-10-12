@@ -32,7 +32,12 @@ const initializeGame = function initializeGame () {
   const pipe = new Pipe(imageAssets)
   const [firstSet, secondSet] = pipe.pipeSets
 
-  const player = new Player([baseSprite, baseSpriteExtension])
+  const pipeSprites = [
+    ...Object.keys(firstSet).map(key => firstSet[key]),
+    ...Object.keys(secondSet).map(key => secondSet[key])
+  ]
+
+  const player = new Player([baseSprite, baseSpriteExtension, ...pipeSprites])
   const playerSprite = player.playerSprite
 
   const backgroundSprite = Sprite({
