@@ -13,6 +13,7 @@ import { Base } from './scenes/base'
 import { Player } from './entities/player'
 import { Pipe } from './scenes/pipe'
 import { GAME_WINDOW, context } from './utils/window'
+import { Background } from './scenes/background'
 
 context.imageSmoothingEnabled = false
 
@@ -40,13 +41,8 @@ const initializeGame = function initializeGame () {
   const player = new Player([baseSprite, baseSpriteExtension, ...pipeSprites])
   const playerSprite = player.playerSprite
 
-  const backgroundSprite = Sprite({
-    x: 0,
-    y: 0,
-    width: GAME_WINDOW.WIDTH,
-    height: GAME_WINDOW.HEIGHT,
-    image: imageAssets['background-day']
-  })
+  const background = new Background(imageAssets)
+  const backgroundSprite = background.backgroundSprite
 
   const loop = GameLoop({
     // create the main game loop
@@ -80,5 +76,5 @@ const initializeGame = function initializeGame () {
 }
 
 setImagePath('assets/sprites')
-load('background-day.png', 'base.png', 'yellowbird.png', 'greenpipe.png')
+load('base.png', 'yellowbird.png', 'greenpipe.png', ...Background.getImageSet())
   .then(initializeGame)
