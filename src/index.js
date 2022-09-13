@@ -11,6 +11,7 @@ import {
 import { Base } from './scenes/base'
 import { Player } from './entities/player'
 import { Pipe } from './scenes/pipe'
+import { context } from './utils/window'
 import { Background } from './scenes/background'
 
 context.imageSmoothingEnabled = false
