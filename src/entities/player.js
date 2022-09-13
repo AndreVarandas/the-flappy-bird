@@ -1,17 +1,24 @@
-import { imageAssets, emit, keyPressed, onPointerDown, Sprite, SpriteSheet } from 'kontra'
+import {
+  imageAssets,
+  emit,
+  keyPressed,
+  onPointerDown,
+  Sprite,
+  SpriteSheet,
+} from 'kontra'
 
 import { GAME_WINDOW } from '../utils/window'
 
 class Player {
-  constructor (collisionObjects) {
+  constructor(collisionObjects) {
     this.collisionObjects = collisionObjects
     this.playerSprite = this.createPlayer()
   }
 
-  static get properties () {
+  static get properties() {
     return {
       width: 51, // 1.5 scale
-      height: 36 // 1.5 scale
+      height: 36, // 1.5 scale
     }
   }
 
@@ -21,10 +28,10 @@ class Player {
    * @static
    * @memberof Player
    */
-  static flap () {
-    this.rotation = -0.40
+  static flap() {
+    this.rotation = -0.4
     this.velocity.y = -8
-    this.ddy = 0.40
+    this.ddy = 0.4
     this.playAnimation('flap')
   }
 
@@ -34,7 +41,7 @@ class Player {
    * @returns {Sprite} playerSprite
    * @memberof Player
    */
-  createPlayer () {
+  createPlayer() {
     const playerSprite = this.createSprite()
     playerSprite.collisionObjects = this.collisionObjects
     playerSprite.animations = this.buildAndGetSpriteSheetAnimations()
@@ -50,13 +57,13 @@ class Player {
    * @returns {Sprite}
    * @memberof Player
    */
-  createSprite () {
+  createSprite() {
     return Sprite({
       x: GAME_WINDOW.WIDTH / 2,
       y: GAME_WINDOW.HEIGHT / 2,
       width: Player.properties.width,
       height: Player.properties.height,
-      anchor: { x: 0.5, y: 0.5 }
+      anchor: { x: 0.5, y: 0.5 },
     })
   }
 
@@ -67,7 +74,7 @@ class Player {
    * @returns {object}
    * @memberof Player
    */
-  buildAndGetSpriteSheetAnimations () {
+  buildAndGetSpriteSheetAnimations() {
     const spriteSheet = SpriteSheet({
       image: imageAssets.yellowbird,
       frameWidth: 34,
@@ -75,14 +82,14 @@ class Player {
       animations: {
         idle: {
           frames: '1..1',
-          frameRate: 0
+          frameRate: 0,
         },
         // create a named animation: FLAP
         flap: {
           frames: '0..2',
-          frameRate: 15
-        }
-      }
+          frameRate: 15,
+        },
+      },
     })
 
     return spriteSheet.animations
@@ -93,7 +100,7 @@ class Player {
    *
    * @memberof Player
    */
-  onPlayerSpriteUpdate () {
+  onPlayerSpriteUpdate() {
     // Move the sprite normally
     this.advance()
     this.playAnimation('flap')
@@ -128,20 +135,28 @@ class Player {
    *
    * @returns {boolean} - True if collided, false if not.
    */
-  onCollision (object) {
+  onCollision(object) {
     // Check if player collided against a pipe at the top
     if (object.name === 'top') {
-      return (this.x >= (object.x - object.width) && this.x < object.x) &&
-        (this.y >= (object.y - object.height) && this.y < object.y)
+      return (
+        this.x >= object.x - object.width &&
+        this.x < object.x &&
+        this.y >= object.y - object.height &&
+        this.y < object.y
+      )
     }
 
     // Check if player collided against a pipe at the bottom
     if (object.name === 'bottom') {
-      return (this.x >= object.x && this.x < (object.x + object.width)) &&
-        (this.y >= object.y && this.y < (object.y + object.height))
+      return (
+        this.x >= object.x &&
+        this.x < object.x + object.width &&
+        this.y >= object.y &&
+        this.y < object.y + object.height
+      )
     }
 
-    return this.y >= (object.y - this.height / 2)
+    return this.y >= object.y - this.height / 2
   }
 }
 

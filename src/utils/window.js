@@ -4,7 +4,7 @@ const { canvas, context } = init()
 
 const GAME_WINDOW = {
   WIDTH: canvas.width,
-  HEIGHT: canvas.height
+  HEIGHT: canvas.height,
 }
 
 export { GAME_WINDOW, canvas, context }

@@ -1,13 +1,13 @@
 export class Score {
-  constructor () {
+  constructor() {
     this.score = 0
   }
 
-  get currentScore () {
+  get currentScore() {
     return this.score
   }
 
-  addPoint () {
+  addPoint() {
     this.score += 1
   }
 }

@@ -2,7 +2,7 @@ import { Sprite } from 'kontra'
 import { GAME_WINDOW } from '../utils/window'
 
 class Pipe {
-  constructor (imageAssets) {
+  constructor(imageAssets) {
     this.imageAssets = imageAssets
     this.pipeSets = []
     // Create the pipe sets right away:
@@ -14,13 +14,13 @@ class Pipe {
    *
    * @returns {{pipeWidth: number, pipeGap: number, pipeHeight: number, baseHeight: number, minPipSize: number}}
    */
-  static get properties () {
+  static get properties() {
     return {
       pipeGap: 150,
       pipeWidth: 73,
       pipeHeight: 320,
       minPipSize: 70,
-      baseHeight: 112
+      baseHeight: 112,
     }
   }
 
@@ -28,10 +28,16 @@ class Pipe {
    * We need to know what's the minimum and maximum possible Y for the pipe assets,
    * so they will not run out of the screen, or look like they are flying.
    */
-  static get getMinMaxPipeHeight () {
+  static get getMinMaxPipeHeight() {
     return {
-      maxY: GAME_WINDOW.HEIGHT - Pipe.properties.pipeHeight - Pipe.properties.baseHeight,
-      minY: GAME_WINDOW.HEIGHT - Pipe.properties.baseHeight - Pipe.properties.minPipSize
+      maxY:
+        GAME_WINDOW.HEIGHT -
+        Pipe.properties.pipeHeight -
+        Pipe.properties.baseHeight,
+      minY:
+        GAME_WINDOW.HEIGHT -
+        Pipe.properties.baseHeight -
+        Pipe.properties.minPipSize,
     }
   }
 
@@ -40,7 +46,7 @@ class Pipe {
    * We need this, because we want to spawn two sets of top and bottom pipes,
    * so the screen does not seem to be that empty (and adds a little bit of difficulty)
    */
-  createPipes () {
+  createPipes() {
     this.pipeSets.push(this.createPipeSet(0))
     this.pipeSets.push(this.createPipeSet(1))
   }
@@ -55,7 +61,7 @@ class Pipe {
    * @returns {{bottomPipeSprite: *, topPipeSprite: *}} - Returns two
    * slightly modified Sprite objects.
    */
-  createPipeSet (index) {
+  createPipeSet(index) {
     const topPipe = this.getConfigForPosition('top', index)
     const bottomPipe = this.getConfigForPosition('bottom', index)
     // bottomPipe.y has to be generated after topPipe.y is known and available
@@ -67,18 +73,22 @@ class Pipe {
      */
     const previousPipeSet = this.pipeSets[index - 1]
     if (previousPipeSet) {
-      bottomPipe.x += (GAME_WINDOW.WIDTH / 2) + (Pipe.properties.pipeWidth / 2)
-      topPipe.x += (GAME_WINDOW.WIDTH / 2) + (Pipe.properties.pipeWidth / 2)
+      bottomPipe.x += GAME_WINDOW.WIDTH / 2 + Pipe.properties.pipeWidth / 2
+      topPipe.x += GAME_WINDOW.WIDTH / 2 + Pipe.properties.pipeWidth / 2
     }
 
     const topPipeSprite = Sprite(topPipe)
     topPipeSprite.update = this.onPipeSpriteUpdate.bind(this, topPipeSprite)
 
     const bottomPipeSprite = Sprite(bottomPipe)
-    bottomPipeSprite.update = this.onPipeSpriteUpdate.bind(this, bottomPipeSprite)
+    bottomPipeSprite.update = this.onPipeSpriteUpdate.bind(
+      this,
+      bottomPipeSprite
+    )
 
     return {
-      topPipeSprite, bottomPipeSprite
+      topPipeSprite,
+      bottomPipeSprite,
     }
   }
 
@@ -91,7 +101,7 @@ class Pipe {
    * @returns {{image: *, pipeIndex: *, dx: number, rotation: *, x: *, width: *, name: *, y: number, height: *}} .
    * basically returns a Sprite object with two new properties attached to it: name and pipeIndex.
    */
-  getConfigForPosition (position, index) {
+  getConfigForPosition(position, index) {
     let positionY
     let positionX
     let rotation
@@ -117,7 +127,7 @@ class Pipe {
       dx: -3,
       image: this.imageAssets.greenpipe,
       name: position, // position is reserved, using name instead
-      pipeIndex: index
+      pipeIndex: index,
     }
   }
 
@@ -128,7 +138,7 @@ class Pipe {
    *
    * @returns {number} - Ideal y for the bottom pipe.
    */
-  getBottomPipeHeight (topPipeY) {
+  getBottomPipeHeight(topPipeY) {
     const { minY, maxY } = Pipe.getMinMaxPipeHeight
     const calculatedBottomPipeHeight = topPipeY + Pipe.properties.pipeGap
     if (calculatedBottomPipeHeight > minY) {
@@ -150,7 +160,7 @@ class Pipe {
    *
    * @returns {number} - The randomly generated number between min and max.
    */
-  generateRandomNumber (max, min) {
+  generateRandomNumber(max, min) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
@@ -164,7 +174,7 @@ class Pipe {
    *
    * @param sprite {object} - the sprite to update / transform.
    */
-  onPipeSpriteUpdate (sprite) {
+  onPipeSpriteUpdate(sprite) {
     const { pipeHeight, pipeWidth, minPipSize } = Pipe.properties
 
     sprite.advance()
@@ -173,7 +183,9 @@ class Pipe {
       sprite.y = this.generateRandomNumber(pipeHeight, minPipSize)
       sprite.x = GAME_WINDOW.WIDTH + pipeWidth
     } else if (sprite.x < -pipeWidth && sprite.name === 'bottom') {
-      sprite.y = this.getBottomPipeHeight(this.pipeSets[sprite.pipeIndex].topPipeSprite.y)
+      sprite.y = this.getBottomPipeHeight(
+        this.pipeSets[sprite.pipeIndex].topPipeSprite.y
+      )
       sprite.x = GAME_WINDOW.WIDTH
     }
   }

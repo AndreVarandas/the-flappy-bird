@@ -1,41 +1,52 @@
 {
   "name": "flapster",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Reviving Flappy Bird!",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url ./",
-    "debug": "npm run start && parcel watch src/index.html",
-    "deploy": "npx surge"
+    "build": "npm run clean && parcel build src/index.html --public-url ./",
+    "dev": "npm run start && parcel watch src/index.html",
+    "deploy": "npx surge",
+    "clean": "rimraf dist",
+    "lint:js": "eslint --ext \".js,.ts\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "lintfix": "prettier --write --list-different . && npm run lint:js --fix",
+    "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "flappy bird",
+    "clone",
+    "kontrajs",
+    "web game dev"
+  ],
+  "author": "André Varandas, <andre.m.varandas@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "assets": "^3.0.1",
-    "kontra": "^6.6.0",
+    "kontra": "^6.9.1",
     "path": "^0.12.7"
   },
-  "devDependencies": {
-    "eslint": "^6.4.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-static-files-copy": "^2.2.1",
-    "sass": "^1.22.12"
-  },
   "staticFiles": {
-    "staticPath": [
-      {
-        "staticPath": "src/assets",
-        "staticOutDir": "assets"
-      }
-    ],
-    "watcherGlob": "**"
+    "staticPath": "src/assets",
+    "staticOutPath": "assets"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache",
+    "*.**": "prettier --check --ignore-unknown"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.7.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "parcel": "^2.7.0",
+    "parcel-reporter-static-files-copy": "^1.4.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.9"
   }
 }

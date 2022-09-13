@@ -5,7 +5,7 @@ import { Sprite } from 'kontra'
  * Base sprites are the 'base' of the game aka ground/platform.
  */
 class Base {
-  constructor (imageAssets) {
+  constructor(imageAssets) {
     this.imageAssets = imageAssets
     this.baseSprite = this.generateBaseSprite('base')
     this.baseSpriteExtension = this.generateBaseSprite('extension')
@@ -17,7 +17,7 @@ class Base {
    * @param name {string} - Must be either 'base' or 'extension'
    * @returns {Sprite} - The base Sprite
    */
-  generateBaseSprite (name) {
+  generateBaseSprite(name) {
     return Sprite(this.getBaseSpriteConfig(this.imageAssets, name))
   }
 
@@ -30,7 +30,7 @@ class Base {
    *
    * @returns {{image: *, dx: *, x: *, width: *, y: *}}
    */
-  getBaseSpriteConfig (imageAssets, name) {
+  getBaseSpriteConfig(imageAssets, name) {
     return {
       // we want to show the extension asset right after the base
       x: name === 'base' ? Base.defaultX : Base.defaultWidth,
@@ -38,7 +38,7 @@ class Base {
       width: Base.defaultWidth,
       dx: Base.baseSpeed,
       image: imageAssets.base,
-      name: name
+      name: name,
     }
   }
 
@@ -54,7 +54,7 @@ class Base {
    *
    * @param sprite
    */
-  baseSpriteUpdate (sprite) {
+  baseSpriteUpdate(sprite) {
     sprite.advance()
     /**
      * As an example,
@@ -64,8 +64,8 @@ class Base {
      */
     if (Math.round(sprite.x / Base.baseSpeed) === 0) {
       sprite.name === 'base'
-        ? this.baseSpriteExtension.x = this.baseSpriteExtension.width
-        : this.baseSprite.x = this.baseSprite.width
+        ? (this.baseSpriteExtension.x = this.baseSpriteExtension.width)
+        : (this.baseSprite.x = this.baseSprite.width)
     }
   }
 
@@ -75,13 +75,16 @@ class Base {
    *
    * @returns {{baseSprite: (Sprite), baseSpriteExtension: (Sprite}}
    */
-  createBaseSprites () {
+  createBaseSprites() {
     this.baseSprite.update = this.baseSpriteUpdate.bind(this, this.baseSprite)
-    this.baseSpriteExtension.update = this.baseSpriteUpdate.bind(this, this.baseSpriteExtension)
+    this.baseSpriteExtension.update = this.baseSpriteUpdate.bind(
+      this,
+      this.baseSpriteExtension
+    )
 
     return {
       baseSprite: this.baseSprite,
-      baseSpriteExtension: this.baseSpriteExtension
+      baseSpriteExtension: this.baseSpriteExtension,
     }
   }
 }
