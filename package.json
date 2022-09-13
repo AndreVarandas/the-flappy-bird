@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Reviving Flappy Bird!",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
@@ -25,9 +26,7 @@
   "author": "André Varandas, <andre.m.varandas@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "assets": "^3.0.1",
-    "kontra": "^6.9.1",
-    "path": "^0.12.7"
+    "kontra": "^6.9.1"
   },
   "staticFiles": {
     "staticPath": "src/assets",
