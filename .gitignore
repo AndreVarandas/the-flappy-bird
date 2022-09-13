@@ -3,9 +3,11 @@
 
 # Parcel + modules
 .cache
+.parcel-cache
 dist
 node_modules
 
 # Editors
 .vscode
 .idea
+.vs

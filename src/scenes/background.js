@@ -7,7 +7,7 @@ import { GAME_WINDOW } from '../utils/window'
  * time of the day.
  */
 class Background {
-  constructor (imageAssets) {
+  constructor(imageAssets) {
     this.imageAssets = imageAssets
     this.backgroundSprite = this.createBackgroundSprite()
   }
@@ -17,11 +17,11 @@ class Background {
    *
    * @returns {array} - List of image filenames
    */
-  static getImageSet () {
+  static getImageSet() {
     return [
       'background-day.png',
       'background-night.png',
-      'background-interlude.png'
+      'background-interlude.png',
     ]
   }
 
@@ -34,13 +34,13 @@ class Background {
    *
    * @returns {{image: *, x: *, y: *, width: *, height: *}}
    */
-  getBackgroundSpriteConfig (imageAssets, imageName = 'background-day') {
+  getBackgroundSpriteConfig(imageAssets, imageName = 'background-day') {
     return {
       x: 0,
       y: 0,
       width: GAME_WINDOW.WIDTH,
       height: GAME_WINDOW.HEIGHT,
-      image: imageAssets[imageName]
+      image: imageAssets[imageName],
     }
   }
 
@@ -50,11 +50,14 @@ class Background {
    *
    * @returns {string} - Name of an image asset
    */
-  getBgImageAssetName () {
-    const currentHour = (new Date()).getHours()
+  getBgImageAssetName() {
+    const currentHour = new Date().getHours()
 
     let dayPhase
-    if ((currentHour >= 7 && currentHour < 8) || (currentHour >= 19 && currentHour < 20)) {
+    if (
+      (currentHour >= 7 && currentHour < 8) ||
+      (currentHour >= 19 && currentHour < 20)
+    ) {
       dayPhase = 'interlude'
     } else if (currentHour >= 8 && currentHour < 19) {
       dayPhase = 'day'
@@ -70,7 +73,7 @@ class Background {
    *
    * @returns {Sprite} - The background Sprite
    */
-  createBackgroundSprite () {
+  createBackgroundSprite() {
     const imageName = this.getBgImageAssetName()
     return Sprite(this.getBackgroundSpriteConfig(this.imageAssets, imageName))
   }
