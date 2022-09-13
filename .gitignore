@@ -4,6 +4,7 @@
 # Parcel + modules
 .cache
 .parcel-cache
+.eslintcache
 dist
 node_modules
 
